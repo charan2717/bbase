@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret!"
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 @app.route("/")
 def index():
@@ -14,4 +14,6 @@ def handle_message(msg):
     socketio.send(msg, broadcast=True)
 
 if __name__ == "__main__":
-    socketio.run(app, host='0.0.0.0', port=5000)
+    import eventlet
+    import eventlet.wsgi
+    eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 5000)), app)
