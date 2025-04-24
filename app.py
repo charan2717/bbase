@@ -6,10 +6,10 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret!"
 
 # CORS setup: allow only your Vercel frontend
-CORS(app, supports_credentials=True, origins=["https://bbase-ebon.vercel.app"])
+CORS(app, supports_credentials=True, origins=["https://bbase-yrj2.onrender.com"])
 
 # SocketIO with correct CORS
-socketio = SocketIO(app, cors_allowed_origins=["https://bbase-ebon.vercel.app"], async_mode="eventlet")
+socketio = SocketIO(app, cors_allowed_origins=["https://bbase-yrj2.onrender.com"], async_mode="eventlet")
 
 @app.route("/")
 def index():
